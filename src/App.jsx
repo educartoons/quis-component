@@ -1,42 +1,31 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import { UserContext } from "./context/UserContext";
-import { ThemeContext } from "./context/ThemeContext";
 
-import "./style.css";
+const lenguagesProgramming = [
+  "Python",
+  "Go",
+  "C++",
+  "JavaScript",
+  "Java",
+  "Swift",
+  "Rust",
+  "Php",
+];
 
-const USER = {
-  username: "educartoons",
-  email: "educartoons@gmail.com",
-};
+export default function App() {
+  const [query, setQuery] = useState("");
 
-function App() {
-  const [user, setUser] = useState(USER);
-  const [theme, setTheme] = useState("light");
-
-  const handleChangeTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+  const handleChangeQuery = (e) => {
+    setQuery(e.target.value);
   };
 
   return (
-    <div className={theme === "light" ? "bg-zinc-200" : "bg-black"}>
-      <ThemeContext.Provider value={theme}>
-        <UserContext.Provider value={user}>
-          <Header />
-          <button
-            className="border border-gray-700 px-4 rounded-lg"
-            onClick={handleChangeTheme}
-          >
-            {theme === "light" ? "🌙" : "🌞"}
-          </button>
-        </UserContext.Provider>
-      </ThemeContext.Provider>
-    </div>
+    <>
+      <input onChange={handleChangeQuery} type="text" />
+      {lenguagesProgramming
+        .filter((item) => item.toLowerCase().includes(query.toLowerCase()))
+        .map((item, idx) => (
+          <li key={idx}>{item}</li>
+        ))}
+    </>
   );
 }
-
-export default App;
