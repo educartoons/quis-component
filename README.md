@@ -1,8 +1,21 @@
-# React + Vite
+# Ruta de ReactJS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. Que son componentes
 
-Currently, two official plugins are available:
+## 2. Props and States
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 3. TailwindCSS
+
+## 4. Context
+
+## 5. Redux
+
+## 6. React Router
+
+## 7. Testing
+
+## 8. Good Practices / Performance
+
+## 9. Examples
+
+## 10. Examples

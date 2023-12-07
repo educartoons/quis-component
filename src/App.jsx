@@ -1,76 +1,40 @@
 import { useState } from "react";
-import Question from "./Question";
+import Header from "./components/Header";
+import { UserContext } from "./context/UserContext";
+import { ThemeContext } from "./context/ThemeContext";
 
 import "./style.css";
 
-const questions = [
-  {
-    title:
-      "What is the main advantage of using a rolling budget instead of an annual budget?",
-    alternatives: [
-      "It requires less effort to create.",
-      "It provides a longer-term financial outlook.",
-      "It allows for more flexibility in adapting to changing circumstances",
-      "It is a legal requirenment for some businesses",
-    ],
-  },
-  {
-    title:
-      "What is the main advantage of using a rolling budget instead of an annual budget 2?",
-    alternatives: [
-      "It requires less effort to create 2.",
-      "It provides a longer-term financial outlook 2.",
-      "It allows for more flexibility in adapting to changing circumstances 2",
-      "It is a legal requirenment for some businesses 2",
-    ],
-  },
-  {
-    title:
-      "What is the main advantage of using a rolling budget instead of an annual budget 3?",
-    alternatives: [
-      "It requires less effort to create 3.",
-      "It provides a longer-term financial outlook 3.",
-      "It allows for more flexibility in adapting to changing circumstances 3",
-      "It is a legal requirenment for some businesses 3",
-    ],
-  },
-  {
-    title:
-      "What is the main advantage of using a rolling budget instead of an annual budget 4?",
-    alternatives: [
-      "It requires less effort to create 4.",
-      "It provides a longer-term financial outlook 4.",
-      "It allows for more flexibility in adapting to changing circumstances 4",
-      "It is a legal requirenment for some businesses 4",
-    ],
-  },
-];
+const USER = {
+  username: "educartoons",
+  email: "educartoons@gmail.com",
+};
 
 function App() {
-  const [index, setIndex] = useState(0);
+  const [user, setUser] = useState(USER);
+  const [theme, setTheme] = useState("light");
 
-  const handleNext = () => {
-    const newIndex = index + 1;
-    if (newIndex < questions.length) {
-      setIndex(newIndex);
+  const handleChangeTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
     }
   };
 
   return (
-    <div className="bg-slate-100">
-      <div className="container max-w-2xl mx-auto bg-white px-20 py-10">
-        <Question question={questions[index]} />
-
-        <div className="mt-8">
+    <div className={theme === "light" ? "bg-zinc-200" : "bg-black"}>
+      <ThemeContext.Provider value={theme}>
+        <UserContext.Provider value={user}>
+          <Header />
           <button
-            // disabled={true}
-            onClick={handleNext}
-            className="bg-green-500 rounded-md px-4 py-1 text-white	"
+            className="border border-gray-700 px-4 rounded-lg"
+            onClick={handleChangeTheme}
           >
-            {index + 1 === questions.length ? "Submit" : "Next"}
+            {theme === "light" ? "🌙" : "🌞"}
           </button>
-        </div>
-      </div>
+        </UserContext.Provider>
+      </ThemeContext.Provider>
     </div>
   );
 }
